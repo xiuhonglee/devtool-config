@@ -1,6 +1,6 @@
 #### 写在前面
 
-* [link to](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)
+* [Link to](http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html)
 
 > 利用gpg在进行加密解密文件，加密算法为RSA(RSA: 某三位实现RSA算法的数学家名字简称)，一种非对称加密算法
 
@@ -193,10 +193,8 @@ $ gpg -d demo.en.txt
 ![](https://s10.mogucdn.com/p2/170212/116560224_1ijfac2c467c3b3l0h23dljcac751_1650x436.png)
 
 
-
-
 # 下面这个是我的公钥文件
 
-* 可以用这把锁给我发文件了
+* 可以用这把锁(公钥)给我发文件了
 
 [public-key.txt](https://github.com/xiuhonglee/devtool-config/blob/master/gpg/public-key.txt)
