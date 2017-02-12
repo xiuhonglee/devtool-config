@@ -199,4 +199,4 @@ $ gpg -d demo.en.txt
 
 * 可以用这把锁给我发文件了
 
-[]()
+[public-key.txt](https://github.com/xiuhonglee/devtool-config/blob/master/gpg/public-key.txt)
