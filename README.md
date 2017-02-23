@@ -9,5 +9,3 @@
 * [.csscomb.json](https://github.com/xiuhonglee/devtool-config/blob/master/.csscomb.json)
 
 * [RAS加密](https://github.com/xiuhonglee/devtool-config/blob/master/gpg/readme.md)
-
-* 来测试git revert
