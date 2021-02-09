@@ -1,131 +1,60 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/xiuhong/.oh-my-zsh
+export ZSH="/Users/xiuhong/.oh-my-zsh"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#SH_THEME="robbyrussell"
-#ZSH_THEME="xxf"
-#ZSH_THEME="muse"
-#ZSH_THEME="kphoen"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="pure"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-
-# User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
-# xcore
-alias xcore="node_modules/.bin/xcore"
+# maven
+MAVEN_HOME=/usr/local/Cellar/maven/3.6.3_1/libexec
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home
+export MAVEN_HOME
+export JAVA_HOME
+export PATH=${PATH}:${MAVEN_HOME}/bin:${JAVA_HOME}/bin
 
 
-# open file with sublime  
-alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
-alias nano="subl"
-export EDITOR="subl"
+alias vi=nvim
+alias vim=nvim
+alias cat=bat
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# Setting ag as the default source for fzf
+export FZF_COMPLETION_TRIGGER=';'
+# export FZF_DEFAULT_COMMAND='ag --hidden -l -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
+# bindkey '^T' fzf-completion
+# bindkey '^I' $fzf_default_completion
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--ansi --preview-window "right:60%" --preview "bat --style=numbers --color=always --line-range :500 {}" --color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254 --color info:254,prompt:37,spinner:108,pointer:235,marker:235'
 
-# git autocomplete
-#source ~/xh_github/git-completion.bash
+source  "/Users/xiuhong/.config/fzf/completion.zsh"
+source  "/Users/xiuhong/.config/fzf/key-bindings.zsh"
 
-#keyboard shortcut 
-bindkey -e
-bindkey '[C' forward-word
-bindkey '[D' backward-word
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+				  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
 
-# Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin" 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
 
-# mongodb
-export PATH="/usr/local/Cellar/mongodb/3.2.0/bin":$PATH
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
-# phantomjs
-export PATH="/Users/xiuhong/phantomjs/bin":$PATH
-
-# java
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-export PATH=$JAVA_HOME/bin:$PATH 
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-
-# don't check for new mail
-MAILCHECK=0
 
